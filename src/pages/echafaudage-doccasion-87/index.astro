@@ -2,7 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Button from '../../components/Button.astro';
+import { Image } from 'astro:assets';
 import { ShieldCheck } from '@lucide/astro';
+import parcMontants from '../../assets/photos/stockage/parc-montants-afix.jpg';
 
 const villes = ['Limoges', 'Saint-Junien', 'Panazol', 'Couzeix', 'Isle', 'Feytiat'];
 
@@ -85,6 +87,19 @@ const faq = [
 			</div>
 
 			<div class="space-y-6">
+				<figure class="overflow-hidden rounded-lg bg-paper shadow-sm">
+					<Image
+						src={parcMontants}
+						alt="Montants d'échafaudage AFIX en stock sur notre parc en Haute-Vienne"
+						widths={[400, 700, 1000]}
+						sizes="(min-width: 1024px) 50vw, 100vw"
+						class="aspect-[4/3] w-full object-cover"
+					/>
+					<figcaption class="px-4 py-2.5 text-sm font-medium text-navy-900">
+						Matériel en stock à Saint-Just-le-Martel, disponible immédiatement
+					</figcaption>
+				</figure>
+
 				<div class="rounded-lg border border-black/5 bg-paper p-6 sm:p-8">
 					<ShieldCheck class="h-8 w-8 text-gold-600" />
 					<h3 class="mt-3 font-heading text-base font-bold text-navy-900">Sécurité et bonnes pratiques</h3>

@@ -2,7 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Button from '../../components/Button.astro';
+import { Image } from 'astro:assets';
 import { ShieldCheck, Award, MapPinned, Ruler } from '@lucide/astro';
+import chantierLimoges from '../../assets/photos/realisations/chantier-facade-limoges.jpg';
 
 const values = [
   {
@@ -38,22 +40,37 @@ const values = [
 		subtitle="Solution Échafaudages accompagne les professionnels du BTP, de l'industrie et des collectivités de Haute-Vienne en échafaudages neufs et d'occasion."
 	/>
 
-	<section class="reveal mx-auto max-w-4xl px-4 py-16 sm:px-6">
-		<h2 class="font-heading text-2xl font-bold text-navy-900">Un accompagnement sur mesure, de A à Z</h2>
-		<p class="mt-4 text-ink/80 leading-relaxed">
-			Solution Échafaudages, basée à Saint-Just-le-Martel et fondée par Éric Frugier, est
-			spécialisée dans la vente d'échafaudages neufs et d'occasion pour tous types de chantiers,
-			du bâtiment à l'événementiel. Chaque projet est étudié sur mesure, en fonction des
-			contraintes du chantier, avec un accompagnement direct, de la prise de mesures à la
-			fourniture du matériel adapté.
-		</p>
-		<p class="mt-4 text-ink/80 leading-relaxed">
-			Fort de 25 ans d'expérience dans le montage et la location d'échafaudages, Éric Frugier
-			fonde Solution Échafaudages en 2022, au cœur de la Haute-Vienne. L'entreprise dispose d'un
-			stock important, avec plus de 3 000 m² de surface de stockage, permettant de répondre
-			rapidement aux besoins des chantiers en Haute-Vienne et dans les départements limitrophes
-			(Creuse, Corrèze, Dordogne, Charente, Indre).
-		</p>
+	<section class="reveal mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[3fr_2fr] lg:items-start">
+		<div>
+			<h2 class="font-heading text-2xl font-bold text-navy-900">Un accompagnement sur mesure, de A à Z</h2>
+			<p class="mt-4 text-ink/80 leading-relaxed">
+				Solution Échafaudages, basée à Saint-Just-le-Martel et fondée par Éric Frugier, est
+				spécialisée dans la vente d'échafaudages neufs et d'occasion pour tous types de chantiers,
+				du bâtiment à l'événementiel. Chaque projet est étudié sur mesure, en fonction des
+				contraintes du chantier, avec un accompagnement direct, de la prise de mesures à la
+				fourniture du matériel adapté.
+			</p>
+			<p class="mt-4 text-ink/80 leading-relaxed">
+				Fort de 25 ans d'expérience dans le montage et la location d'échafaudages, Éric Frugier
+				fonde Solution Échafaudages en 2022, au cœur de la Haute-Vienne. L'entreprise dispose d'un
+				stock important, avec plus de 3 000 m² de surface de stockage, permettant de répondre
+				rapidement aux besoins des chantiers en Haute-Vienne et dans les départements limitrophes
+				(Creuse, Corrèze, Dordogne, Charente, Indre).
+			</p>
+		</div>
+
+		<figure class="overflow-hidden rounded-lg bg-paper shadow-sm">
+			<Image
+				src={chantierLimoges}
+				alt="Échafaudage AFIX fourni par Solution Échafaudages sur un chantier de rénovation de façade à Limoges"
+				widths={[400, 700, 1000]}
+				sizes="(min-width: 1024px) 40vw, 100vw"
+				class="aspect-[3/4] w-full object-cover object-top"
+			/>
+			<figcaption class="px-4 py-3 text-sm text-ink/70">
+				Chantier de rénovation de façade à Limoges, équipé en échafaudage AFIX.
+			</figcaption>
+		</figure>
 	</section>
 
 	<section class="reveal bg-paper py-16">
