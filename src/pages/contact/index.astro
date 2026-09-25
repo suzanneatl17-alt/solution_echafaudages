@@ -36,12 +36,15 @@ import { Phone, Mail, MapPin } from '@lucide/astro';
 		</div>
 
 		<form
+			id="contact-form"
 			class="lg:col-span-3 space-y-5 rounded-lg border border-black/10 bg-white p-6 shadow-sm sm:p-8"
 			action="https://api.web3forms.com/submit"
 			method="POST"
 		>
-			<!-- Clé Web3Forms à renseigner à l'étape 6 (compte gratuit à créer par la cliente) -->
-			<input type="hidden" name="access_key" value="PENDING_WEB3FORMS_ACCESS_KEY" />
+			<!-- Clé publique Web3Forms (compte solution.echafaudages@gmail.com) : elle peut figurer dans le code. -->
+			<input type="hidden" name="access_key" value="79a5c007-3a5f-4abf-b544-09938a3f625d" />
+			<input type="hidden" name="from_name" value="Site solutionechafaudages87.fr" />
+			<input type="hidden" name="subject" value="Nouvelle demande depuis le site" />
 			<input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
 			<div class="grid gap-5 sm:grid-cols-2">
@@ -67,14 +70,28 @@ import { Phone, Mail, MapPin } from '@lucide/astro';
 				</div>
 			</div>
 
-			<div>
-				<label for="subject" class="mb-1 block text-sm font-semibold text-navy-900">Sujet</label>
-				<input
-					id="subject"
-					name="subject"
-					type="text"
-					class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
-				/>
+			<div class="grid gap-5 sm:grid-cols-2">
+				<div>
+					<label for="phone" class="mb-1 block text-sm font-semibold text-navy-900">
+						Téléphone <span class="font-normal text-ink/50">(facultatif)</span>
+					</label>
+					<input
+						id="phone"
+						name="phone"
+						type="tel"
+						autocomplete="tel"
+						class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
+					/>
+				</div>
+				<div>
+					<label for="subject" class="mb-1 block text-sm font-semibold text-navy-900">Sujet</label>
+					<input
+						id="subject"
+						name="sujet"
+						type="text"
+						class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
+					/>
+				</div>
 			</div>
 
 			<div>
@@ -90,10 +107,46 @@ import { Phone, Mail, MapPin } from '@lucide/astro';
 
 			<button
 				type="submit"
-				class="inline-flex items-center justify-center rounded-md bg-gold-500 px-6 py-3 font-heading text-sm font-semibold text-navy-950 transition-colors hover:bg-gold-600"
+				class="inline-flex items-center justify-center rounded-md bg-gold-500 px-6 py-3 font-heading text-sm font-semibold text-navy-950 transition-colors hover:bg-gold-600 disabled:cursor-wait disabled:opacity-60"
 			>
 				Envoyer le message
 			</button>
+
+			<p id="form-status" class="hidden rounded-md px-4 py-3 text-sm" role="status" aria-live="polite"></p>
 		</form>
 	</section>
 </Layout>
+
+<script>
+	// Envoi en arrière-plan pour rester sur le site (sans JavaScript, le formulaire
+	// est posté normalement vers Web3Forms).
+	const form = document.getElementById('contact-form') as HTMLFormElement | null;
+	const status = document.getElementById('form-status');
+	const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+	function showStatus(message: string, ok: boolean) {
+		if (!status) return;
+		status.textContent = message;
+		status.className = `rounded-md px-4 py-3 text-sm ${ok ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`;
+	}
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		if (button) button.disabled = true;
+		try {
+			const response = await fetch(form.action, {
+				method: 'POST',
+				headers: { Accept: 'application/json' },
+				body: new FormData(form),
+			});
+			const result = await response.json();
+			if (!response.ok || !result.success) throw new Error(result.message);
+			form.reset();
+			showStatus('Merci, votre message a bien été envoyé. Nous vous recontactons rapidement.', true);
+		} catch {
+			showStatus("L'envoi n'a pas abouti. Réessayez ou appelez-nous au 06 09 55 14 94.", false);
+		} finally {
+			if (button) button.disabled = false;
+		}
+	});
+</script>
