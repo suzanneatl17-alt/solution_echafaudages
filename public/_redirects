@@ -4,3 +4,4 @@
 /produit/                               /tous-les-produits/          301
 /author/*                               /a-propos/                   301
 /feed/                                  /                            301
+/sitemap_index.xml                      /sitemap-index.xml           301
