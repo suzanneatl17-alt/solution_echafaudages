@@ -1,0 +1,12 @@
+// Hébergement Cloudflare Workers (site statique) : Cloudflare lance `npm run build`
+// puis publie le dossier dist/. Les redirections 301 sont lues dans dist/_redirects.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "solution-echafaudages",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

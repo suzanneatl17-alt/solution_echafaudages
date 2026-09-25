@@ -1,16 +1,10 @@
-# Redéclenche un build Cloudflare Pages le lendemain de la fin du salon
-# Batimat 2026 (1er octobre), pour que la bannière d'accueil et la page
+# Redéclenche un build Cloudflare le lendemain de la fin du salon Batimat 2026
+# (1er octobre), pour que le bandeau, la bannière d'accueil et la page
 # /salon-batimat-2026/ disparaissent automatiquement du site sans action
 # manuelle (voir src/lib/batimat.ts pour la date de bascule).
 #
-# Mise en route (une seule fois, après le déploiement Cloudflare Pages) :
-#   1. Dans le dashboard Cloudflare Pages du projet > Settings > Builds &
-#      deployments > Deploy hooks, créer un hook et copier son URL.
-#   2. Dans GitHub, Settings > Secrets and variables > Actions, créer un
-#      secret nommé CLOUDFLARE_DEPLOY_HOOK_URL avec cette URL.
-#
-# Ce workflow ne fait rien tant que ces deux étapes ne sont pas faites
-# (le secret sera vide et l'appel échouera silencieusement côté Cloudflare).
+# Cloudflare reconstruit le site à chaque push sur main : ce workflow pousse
+# simplement un commit vide. Aucun secret à configurer.
 # Comme un cron GitHub Actions se répète chaque année, il peut être
 # supprimé après le salon 2026 une fois son rôle rempli.
 name: Expire Batimat banner
@@ -20,14 +14,17 @@ on:
     - cron: '0 3 2 10 *' # 2 octobre, 03:00 UTC (peu après la fin du salon)
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Cloudflare Pages rebuild
+      - uses: actions/checkout@v4
+      - name: Push an empty commit to trigger the Cloudflare rebuild
         run: |
-          if [ -z "${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}" ]; then
-            echo "CLOUDFLARE_DEPLOY_HOOK_URL non configuré — voir le commentaire en tête de fichier."
-            exit 0
-          fi
-          curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Rebuild : fin du salon Batimat 2026"
+          git push

@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout
+	title="Page introuvable | Solution Échafaudages"
+	description="La page demandée n'existe pas ou a été déplacée."
+	noindex
+>
+	<PageHero
+		eyebrow="Erreur 404"
+		title="Cette page est introuvable"
+		subtitle="Elle a peut-être été déplacée lors de la refonte du site. Retrouvez nos produits ou contactez-nous directement."
+	/>
+
+	<section class="mx-auto flex max-w-6xl flex-wrap gap-4 px-4 py-16 sm:px-6">
+		<Button href="/" variant="secondary">Retour à l'accueil</Button>
+		<Button href="/tous-les-produits/" variant="outline-navy">Voir tous les produits</Button>
+		<Button href="/contact/" variant="outline-navy">Nous contacter</Button>
+	</section>
+</Layout>
