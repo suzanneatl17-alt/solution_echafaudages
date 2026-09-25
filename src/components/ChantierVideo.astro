@@ -1,0 +1,78 @@
+---
+import { Volume2, VolumeX } from '@lucide/astro';
+---
+
+<section class="reveal bg-navy-950 py-16">
+	<div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
+		<div class="text-center lg:text-left">
+			<p class="font-heading text-sm font-semibold uppercase tracking-widest text-gold-500">Nos livraisons</p>
+			<h2 class="mt-2 font-heading text-2xl font-bold text-white">Un chargement, en direct</h2>
+			<p class="mx-auto mt-4 max-w-md text-white/70 lg:mx-0">
+				Chargement et levage d'un échafaudage pour une livraison récente : chaque intervention est
+				préparée et sécurisée, du chargement du matériel jusqu'à la pose sur site.
+			</p>
+		</div>
+
+		<div
+			id="chantier-video-wrap"
+			class="relative mx-auto aspect-[9/20] w-full max-w-sm overflow-hidden rounded-lg shadow-xl lg:max-w-md"
+		>
+			<video
+				id="chantier-video"
+				class="h-full w-full object-cover"
+				src="/videos/chantier-levage.mp4"
+				poster="/videos/chantier-levage-poster.jpg"
+				muted
+				loop
+				playsinline
+				preload="metadata"
+			></video>
+			<button
+				id="chantier-video-sound"
+				type="button"
+				class="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-navy-950/70 text-white backdrop-blur transition hover:bg-navy-950"
+				aria-label="Activer le son"
+			>
+				<Volume2 id="chantier-video-icon-on" class="h-5 w-5" />
+				<VolumeX id="chantier-video-icon-off" class="hidden h-5 w-5" />
+			</button>
+		</div>
+	</div>
+</section>
+
+<script>
+	const video = document.getElementById('chantier-video') as HTMLVideoElement | null;
+	const wrap = document.getElementById('chantier-video-wrap');
+	const soundBtn = document.getElementById('chantier-video-sound');
+	const iconOn = document.getElementById('chantier-video-icon-on');
+	const iconOff = document.getElementById('chantier-video-icon-off');
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	if (video && wrap) {
+		if (reduceMotion) {
+			video.controls = true;
+		} else {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							video.play().catch(() => {});
+						} else {
+							video.pause();
+						}
+					});
+				},
+				{ threshold: 0.5 },
+			);
+			observer.observe(wrap);
+		}
+	}
+
+	soundBtn?.addEventListener('click', () => {
+		if (!video) return;
+		video.muted = !video.muted;
+		soundBtn.setAttribute('aria-label', video.muted ? 'Activer le son' : 'Couper le son');
+		iconOn?.classList.toggle('hidden', !video.muted);
+		iconOff?.classList.toggle('hidden', video.muted);
+	});
+</script>

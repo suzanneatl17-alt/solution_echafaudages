@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categories } from '../../lib/categories';
+import { ArrowRight } from '@lucide/astro';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+
+// Une carte par fiche produit, et une par variante (Planche 30, socle à rotule…)
+// pour retrouver le catalogue détaillé de l'ancien site.
+const sections = categories
+  .map((category) => ({
+    category,
+    items: products
+      .filter((product) => product.data.category === category.slug)
+      .flatMap((product) => {
+        const href = `/produit/${product.id}/`;
+        if (!product.data.variants?.length) {
+          return [{ title: product.data.title, image: product.data.image, href, description: product.data.excerpt }];
+        }
+        return product.data.variants.map((variant) => ({
+          title: variant.name,
+          image: variant.image,
+          href,
+          description: variant.description,
+        }));
+      }),
+  }))
+  .filter((section) => section.items.length > 0);
+---
+
+<Layout
+	title="Tous nos produits — Échafaudages AFIXFAST | Solution Échafaudages"
+	description="Catalogue complet : montants, lisses, garde-corps, diagonales, planchers, escaliers, embases et échafaudages de façade AFIXFAST, neufs et d'occasion, en Haute-Vienne (87)."
+>
+	<PageHero
+		eyebrow="Catalogue"
+		title="Tous nos produits"
+		subtitle="L'ensemble des composants et configurations AFIXFAST disponibles, classés par famille."
+	/>
+
+	<div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		{sections.map(({ category, items }) => (
+			<section class="reveal mb-16 last:mb-0">
+				<div class="flex flex-wrap items-end justify-between gap-2 border-b border-black/10 pb-3">
+					<h2 class="font-heading text-xl font-bold text-navy-900 sm:text-2xl">{category.title}</h2>
+					<a
+						href={`/types-echaffaudage/${category.slug}/`}
+						class="flex items-center gap-1 font-heading text-sm font-semibold text-navy-600 hover:text-gold-600"
+					>
+						Voir la catégorie
+						<ArrowRight class="h-4 w-4" />
+					</a>
+				</div>
+				<div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					{items.map((item) => <ProductCard {...item} />)}
+				</div>
+			</section>
+		))}
+
+		<div class="reveal mt-16 rounded-lg bg-navy-950 p-8 text-center text-white sm:p-12">
+			<h2 class="font-heading text-xl font-bold sm:text-2xl">Vous ne trouvez pas le composant recherché ?</h2>
+			<p class="mx-auto mt-3 max-w-xl text-white/75">
+				Décrivez-nous votre chantier : nous vous proposons la configuration adaptée, en neuf ou en
+				occasion.
+			</p>
+			<div class="mt-6">
+				<Button href="/contact/" variant="primary">Demander un devis</Button>
+			</div>
+		</div>
+	</div>
+</Layout>

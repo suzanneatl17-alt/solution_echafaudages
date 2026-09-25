@@ -1,0 +1,39 @@
+---
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: 'Solution Échafaudages',
+  legalName: 'Solution Échafaudages',
+  image: 'https://solutionechafaudages87.fr/images/logo.png',
+  logo: 'https://solutionechafaudages87.fr/images/logo.png',
+  url: 'https://solutionechafaudages87.fr/',
+  telephone: '+33609551494',
+  email: 'solution.echafaudages@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '4 chemin de la petite Chèze',
+    addressLocality: 'Saint-Just-le-Martel',
+    postalCode: '87590',
+    addressCountry: 'FR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 45.8524,
+    longitude: 1.3825,
+  },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Haute-Vienne' },
+    { '@type': 'AdministrativeArea', name: 'Creuse' },
+    { '@type': 'AdministrativeArea', name: 'Corrèze' },
+    { '@type': 'AdministrativeArea', name: 'Dordogne' },
+    { '@type': 'AdministrativeArea', name: 'Charente' },
+    { '@type': 'AdministrativeArea', name: 'Indre' },
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Éric Frugier',
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

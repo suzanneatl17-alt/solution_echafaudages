@@ -1,0 +1,17 @@
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    // Seuil à 0 + marge basse : un bloc plus haut que plusieurs écrans (fiche produit
+    // à nombreuses variantes sur mobile) n'atteindrait jamais un seuil en pourcentage.
+    { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>

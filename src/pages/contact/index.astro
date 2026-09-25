@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { Phone, Mail, MapPin } from '@lucide/astro';
+---
+
+<Layout
+	title="Contact — Solution Échafaudages | Devis échafaudage Haute-Vienne"
+	description="Contactez Solution Échafaudages pour un devis d'échafaudage neuf ou d'occasion en Haute-Vienne : téléphone, email ou formulaire en ligne."
+>
+	<PageHero
+		eyebrow="Contact"
+		title="Nous contacter"
+		subtitle="Nous répondons rapidement à toutes vos demandes. N'hésitez pas à nous envoyer un message ou à nous appeler."
+	/>
+
+	<section class="reveal mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-5">
+		<div class="lg:col-span-2">
+			<h2 class="font-heading text-xl font-bold text-navy-900">Nos coordonnées</h2>
+			<ul class="mt-6 space-y-4 text-ink/80">
+				<li class="flex items-start gap-3">
+					<Phone class="mt-1 h-5 w-5 shrink-0 text-gold-600" />
+					<a href="tel:+33609551494" class="hover:text-navy-700">06 09 55 14 94</a>
+				</li>
+				<li class="flex items-start gap-3">
+					<Mail class="mt-1 h-5 w-5 shrink-0 text-gold-600" />
+					<a href="mailto:solution.echafaudages@gmail.com" class="break-all hover:text-navy-700">
+						solution.echafaudages@gmail.com
+					</a>
+				</li>
+				<li class="flex items-start gap-3">
+					<MapPin class="mt-1 h-5 w-5 shrink-0 text-gold-600" />
+					<span>4 chemin de la petite Chèze, 87590 Saint-Just-le-Martel</span>
+				</li>
+			</ul>
+		</div>
+
+		<form
+			class="lg:col-span-3 space-y-5 rounded-lg border border-black/10 bg-white p-6 shadow-sm sm:p-8"
+			action="https://api.web3forms.com/submit"
+			method="POST"
+		>
+			<!-- Clé Web3Forms à renseigner à l'étape 6 (compte gratuit à créer par la cliente) -->
+			<input type="hidden" name="access_key" value="PENDING_WEB3FORMS_ACCESS_KEY" />
+			<input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+			<div class="grid gap-5 sm:grid-cols-2">
+				<div>
+					<label for="name" class="mb-1 block text-sm font-semibold text-navy-900">Prénom</label>
+					<input
+						id="name"
+						name="name"
+						type="text"
+						required
+						class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
+					/>
+				</div>
+				<div>
+					<label for="email" class="mb-1 block text-sm font-semibold text-navy-900">Email</label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						required
+						class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
+					/>
+				</div>
+			</div>
+
+			<div>
+				<label for="subject" class="mb-1 block text-sm font-semibold text-navy-900">Sujet</label>
+				<input
+					id="subject"
+					name="subject"
+					type="text"
+					class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
+				/>
+			</div>
+
+			<div>
+				<label for="message" class="mb-1 block text-sm font-semibold text-navy-900">Message</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="5"
+					required
+					class="w-full rounded-md border border-black/15 px-4 py-2.5 text-sm focus:border-navy-600 focus:outline-none focus:ring-1 focus:ring-navy-600"
+				></textarea>
+			</div>
+
+			<button
+				type="submit"
+				class="inline-flex items-center justify-center rounded-md bg-gold-500 px-6 py-3 font-heading text-sm font-semibold text-navy-950 transition-colors hover:bg-gold-600"
+			>
+				Envoyer le message
+			</button>
+		</form>
+	</section>
+</Layout>

@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import { Phone, Mail, MapPin } from "@lucide/astro";
+import logo from "../assets/images/logo.png";
+
+const year = new Date().getFullYear();
+
+const nav = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos produits", href: "/nos-produits/" },
+  { label: "Tous les produits", href: "/tous-les-produits/" },
+  { label: "Échafaudage d'occasion", href: "/echafaudage-doccasion-87/" },
+  { label: "Échafaudage AFIX", href: "/echafaudage-afix-occasion/" },
+  { label: "Personnalisation", href: "/personnalisation/" },
+  { label: "À propos", href: "/a-propos/" },
+  { label: "Où nous trouver", href: "/ou-nous-trouver/" },
+  { label: "Contact", href: "/contact/" },
+];
+---
+
+<footer class="bg-navy-950 text-white/80">
+  <div class="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
+    <div>
+      <a href="/" class="flex items-center gap-3">
+        <Image src={logo} alt="Solution Échafaudages" width={96} height={96} class="h-12 w-12 rounded-md" />
+        <span class="font-heading text-lg font-bold text-white">Solution Échafaudages</span>
+      </a>
+      <p class="mt-4 text-sm leading-relaxed">
+        Vente d'échafaudages neufs et d'occasion en Haute-Vienne. 25 ans d'expertise au service
+        des professionnels du BTP, de l'industrie et des collectivités.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-gold-500">Navigation</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        {nav.map((item) => (
+          <li><a href={item.href} class="hover:text-gold-400">{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-gold-500">Contact</h3>
+      <ul class="mt-4 space-y-3 text-sm">
+        <li class="flex min-w-0 items-start gap-2">
+          <MapPin class="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
+          <span class="min-w-0">4 chemin de la petite Chèze, 87590 Saint-Just-le-Martel</span>
+        </li>
+        <li class="flex min-w-0 items-center gap-2">
+          <Phone class="h-4 w-4 shrink-0 text-gold-500" />
+          <a href="tel:+33609551494" class="min-w-0 hover:text-gold-400">06 09 55 14 94</a>
+        </li>
+        <li class="flex min-w-0 items-center gap-2">
+          <Mail class="h-4 w-4 shrink-0 text-gold-500" />
+          <a href="mailto:solution.echafaudages@gmail.com" class="min-w-0 break-all hover:text-gold-400">solution.echafaudages@gmail.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="relative z-10 border-t border-white/10 px-4 py-5 sm:px-6">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 text-xs text-white/60 sm:flex-row">
+      <p>&copy; {year} Solution Échafaudages. Tous droits réservés.</p>
+      <a href="/mentions-legales/" class="hover:text-gold-400">Mentions légales</a>
+    </div>
+  </div>
+</footer>

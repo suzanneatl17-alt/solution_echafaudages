@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import ZoneMap from '../../components/ZoneMap.astro';
+import ChantierVideo from '../../components/ChantierVideo.astro';
+import { MapPin, Phone, Warehouse } from '@lucide/astro';
+
+const departements = [
+  'Haute-Vienne (87)',
+  'Creuse (23)',
+  'Corrèze (19)',
+  'Dordogne (24)',
+  'Charente (16)',
+  'Indre (36)',
+];
+
+const itineraireHref =
+  'https://www.google.com/maps/dir/?api=1&destination=4+chemin+de+la+petite+ch%C3%A8ze+87590+Saint-Just-le-Martel';
+---
+
+<Layout
+	title="Où nous trouver — Zone d'intervention Haute-Vienne | Solution Échafaudages"
+	description="Solution Échafaudages est basée à Saint-Just-le-Martel (87590) et livre en Haute-Vienne, Creuse, Corrèze, Dordogne, Charente et Indre."
+>
+	<PageHero
+		eyebrow="Où nous trouver"
+		title="Service de proximité"
+		subtitle="Solution Échafaudages profite d'une implantation de choix. Avec notre important stock d'échafaudage d'occasion de +3000 m², la livraison est assurée sur la région Haute-Vienne et départements limitrophes."
+	/>
+
+	<section class="reveal mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
+		<div>
+			<h2 class="font-heading text-2xl font-bold text-navy-900">Où trouver notre entrepôt ?</h2>
+			<ul class="mt-6 space-y-4 text-ink/80">
+				<li class="flex items-start gap-3">
+					<MapPin class="mt-1 h-5 w-5 shrink-0 text-gold-600" />
+					<span>4 chemin de la petite Chèze, 87590 Saint-Just-le-Martel</span>
+				</li>
+				<li class="flex items-start gap-3">
+					<Warehouse class="mt-1 h-5 w-5 shrink-0 text-gold-600" />
+					<span>Plus de 3 000 m² de surface de stockage pour du matériel neuf et d'occasion disponible rapidement.</span>
+				</li>
+				<li class="flex items-start gap-3">
+					<Phone class="mt-1 h-5 w-5 shrink-0 text-gold-600" />
+					<a href="tel:+33609551494" class="hover:text-navy-700">06 09 55 14 94</a>
+				</li>
+			</ul>
+
+			<h3 class="mt-8 font-heading text-lg font-bold text-navy-900">Zone de livraison</h3>
+			<div class="mt-4 flex flex-wrap gap-2">
+				{departements.map((dep) => (
+					<span class="rounded-full bg-paper px-4 py-2 text-sm font-medium text-navy-800">{dep}</span>
+				))}
+			</div>
+			<p class="mt-4 text-sm text-ink/70">
+				Retrait sur place ou livraison sur chantier selon votre besoin — contactez-nous pour
+				organiser votre commande.
+			</p>
+
+			<div class="mt-8 flex flex-wrap gap-4">
+				<Button href="/contact/" variant="secondary">Demander un devis</Button>
+				<Button href={itineraireHref} variant="outline-navy">Itinéraire Google Maps</Button>
+			</div>
+		</div>
+
+		<div class="rounded-lg border border-black/5 bg-paper p-6 sm:p-8">
+			<ZoneMap />
+		</div>
+	</section>
+
+	<ChantierVideo />
+</Layout>

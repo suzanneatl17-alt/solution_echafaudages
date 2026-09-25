@@ -1,0 +1,31 @@
+---
+interface Props {
+  headers: string[];
+  rows: string[][];
+  note?: string;
+}
+
+const { headers, rows, note } = Astro.props;
+---
+
+<div class="overflow-x-auto rounded-lg border border-black/10">
+  <table class="w-full min-w-[420px] border-collapse text-sm">
+    <thead>
+      <tr class="bg-navy-950 text-white">
+        {headers.map((h) => (
+          <th class="px-4 py-2.5 text-left font-heading font-semibold">{h}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row, i) => (
+        <tr class={i % 2 === 0 ? 'bg-white' : 'bg-paper'}>
+          {row.map((cell) => (
+            <td class="px-4 py-2 text-ink/80">{cell}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+{note && <p class="mt-2 text-xs text-ink/70">{note}</p>}

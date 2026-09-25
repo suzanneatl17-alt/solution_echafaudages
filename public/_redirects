@@ -1,0 +1,6 @@
+# Anciennes URLs WordPress sans équivalent direct (SEO : redirections 301)
+/gamme/pourquoi-choisir-la-gamme-afix/  /echafaudage-afix-occasion/  301
+/category/gamme/                        /echafaudage-afix-occasion/  301
+/produit/                               /tous-les-produits/          301
+/author/*                               /a-propos/                   301
+/feed/                                  /                            301

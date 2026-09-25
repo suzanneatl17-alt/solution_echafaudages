@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import { Palette, Building2, UserRound } from '@lucide/astro';
+import rackPlaques from '../../assets/photos/personnalisation/rack-plaques.jpg';
+import plaqueRouge from '../../assets/photos/personnalisation/plaque-entreprise-rouge.jpg';
+import plaqueJaune from '../../assets/photos/personnalisation/plaque-afix-jaune.jpg';
+import plaquesVertes from '../../assets/photos/personnalisation/plaques-vertes.jpg';
+
+const atouts = [
+  {
+    icon: Building2,
+    title: 'Nom d\'entreprise',
+    text: 'Identifiez votre matériel et valorisez votre image de marque directement sur le chantier.',
+  },
+  {
+    icon: UserRound,
+    title: 'Nom ou prénom',
+    text: 'Une plaque à votre nom pour un échafaudage facilement reconnaissable, même partagé entre plusieurs chantiers.',
+  },
+  {
+    icon: Palette,
+    title: 'Couleur au choix',
+    text: 'Plaques disponibles dans plusieurs coloris pour distinguer vos lots ou respecter votre charte graphique.',
+  },
+];
+---
+
+<Layout
+	title="Personnalisation — Plaques nominatives pour échafaudage | Solution Échafaudages"
+	description="Solution Échafaudages personnalise les plaques de vos échafaudages : nom, prénom ou nom d'entreprise, dans la couleur de votre choix."
+>
+	<PageHero
+		eyebrow="Personnalisation"
+		title="Des échafaudages à vos couleurs"
+		subtitle="Faites personnaliser les plaques de vos échafaudages avec un nom, un prénom ou le nom de votre entreprise, dans la couleur de votre choix."
+	/>
+
+	<section class="reveal mx-auto max-w-4xl px-4 py-16 sm:px-6">
+		<h2 class="font-heading text-2xl font-bold text-navy-900">Un échafaudage identifiable, à votre image</h2>
+		<p class="mt-4 text-ink/80 leading-relaxed">
+			Solution Échafaudages propose la personnalisation des plaques d'échafaudage : nom
+			d'entreprise pour valoriser votre image de marque sur chantier, ou nom et prénom pour
+			identifier facilement votre matériel. Chaque plaque est réalisée à la couleur de votre
+			choix, avec le texte de votre choix.
+		</p>
+	</section>
+
+	<section class="reveal bg-paper py-16">
+		<div class="mx-auto max-w-6xl px-4 sm:px-6">
+			<h2 class="font-heading text-2xl font-bold text-navy-900">Ce que nous proposons</h2>
+			<div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+				{atouts.map(({ icon: Icon, title, text }) => (
+					<div class="rounded-lg border border-black/5 bg-white p-6">
+						<Icon class="h-8 w-8 text-gold-600" />
+						<h3 class="mt-4 font-heading text-base font-bold text-navy-900">{title}</h3>
+						<p class="mt-2 text-sm text-ink/70">{text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="reveal mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		<h2 class="font-heading text-2xl font-bold text-navy-900">Exemples de réalisations</h2>
+		<p class="mt-3 max-w-3xl text-ink/70">
+			Quelques plaques personnalisées réalisées pour nos clients : entreprises du BTP et
+			particuliers.
+		</p>
+		<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+			<div class="overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm sm:col-span-2">
+				<Image
+					src={rackPlaques}
+					alt="Rack de plaques d'échafaudage personnalisées, aux couleurs et noms variés"
+					class="h-full w-full object-cover"
+					widths={[640, 1024, 1400]}
+					sizes="(min-width: 640px) 1152px, 100vw"
+				/>
+			</div>
+			<div class="overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm">
+				<Image
+					src={plaqueRouge}
+					alt="Plaque d'échafaudage rouge personnalisée au nom d'une entreprise"
+					class="h-full w-full object-cover"
+					widths={[400, 700]}
+					sizes="(min-width: 640px) 50vw, 100vw"
+				/>
+			</div>
+			<div class="overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm">
+				<Image
+					src={plaqueJaune}
+					alt="Plaque d'échafaudage jaune personnalisée"
+					class="h-full w-full object-cover"
+					widths={[400, 700]}
+					sizes="(min-width: 640px) 50vw, 100vw"
+				/>
+			</div>
+			<div class="overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm sm:col-span-2">
+				<Image
+					src={plaquesVertes}
+					alt="Plaques d'échafaudage vertes personnalisées avec noms gravés"
+					class="h-full w-full object-cover"
+					widths={[640, 1024, 1400]}
+					sizes="(min-width: 640px) 1152px, 100vw"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="reveal mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">
+		<h2 class="font-heading text-2xl font-bold text-navy-900">Envie de personnaliser votre échafaudage ?</h2>
+		<p class="mt-3 text-ink/70">Contactez-nous pour étudier votre demande de personnalisation.</p>
+		<div class="mt-6 flex flex-wrap justify-center gap-4">
+			<Button href="/contact/" variant="secondary">Demander un devis</Button>
+			<Button href="/nos-produits/" variant="outline-navy">Voir nos produits</Button>
+		</div>
+	</section>
+</Layout>

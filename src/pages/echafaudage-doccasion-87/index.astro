@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import { ShieldCheck } from '@lucide/astro';
+
+const villes = ['Limoges', 'Saint-Junien', 'Panazol', 'Couzeix', 'Isle', 'Feytiat'];
+
+const atouts = [
+  'Prix plus accessible que le neuf',
+  'Matériel professionnel contrôlé',
+  'Disponibilité rapide en Haute-Vienne',
+  'Solution adaptée aux chantiers locaux',
+];
+
+const faq = [
+  {
+    q: "Où acheter un échafaudage d'occasion dans le 87 ?",
+    a: "Nous proposons la vente d'échafaudages d'occasion en Haute-Vienne (87), notamment à Limoges, Saint-Junien et dans tout le département.",
+  },
+  {
+    q: 'Livrez-vous en dehors de Limoges ?',
+    a: "Oui, nous intervenons dans l'ensemble du département 87 et les zones limitrophes selon disponibilité.",
+  },
+  {
+    q: 'Les échafaudages d\'occasion sont-ils conformes ?',
+    a: 'Nos équipements sont contrôlés et adaptés aux chantiers professionnels. Nous recommandons de respecter les règles de sécurité en vigueur.',
+  },
+];
+---
+
+<Layout
+	title="Échafaudage d'occasion 87 | Vente Haute-Vienne — Solution Échafaudages"
+	description="Vente d'échafaudage d'occasion en Haute-Vienne (87) : matériel professionnel robuste et immédiatement disponible pour artisans, entreprises du BTP et particuliers."
+>
+	<PageHero
+		eyebrow="Occasion"
+		title="Vente d'échafaudage d'occasion en Haute-Vienne (87)"
+		subtitle="Spécialiste de la vente d'échafaudage d'occasion en Haute-Vienne (87), nous proposons du matériel professionnel robuste et immédiatement disponible pour les artisans, entreprises du BTP et particuliers exigeants."
+	/>
+
+	<section class="reveal mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		<p class="max-w-3xl text-ink/70">
+			Nous intervenons dans tout le département : {villes.join(', ')}, ainsi que l'ensemble des
+			communes de Haute-Vienne.
+		</p>
+		<div class="mt-4 flex flex-wrap gap-2">
+			{villes.map((ville) => (
+				<span class="rounded-full bg-paper px-4 py-2 text-sm font-medium text-navy-800">{ville}</span>
+			))}
+		</div>
+
+		<div class="mt-12 grid gap-10 lg:grid-cols-2 lg:items-start">
+			<div>
+				<h2 class="font-heading text-lg font-bold text-navy-900">
+					Pourquoi acheter un échafaudage d'occasion dans le 87 ?
+				</h2>
+				<p class="mt-3 text-ink/70">
+					L'achat d'un échafaudage d'occasion permet de réduire l'investissement tout en
+					conservant un équipement professionnel adapté aux travaux de façade, rénovation,
+					couverture et second œuvre.
+				</p>
+				<ul class="mt-4 space-y-3">
+					{atouts.map((title) => (
+						<li class="flex items-center gap-3 text-ink/80">
+							<span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600"></span>
+							{title}
+						</li>
+					))}
+				</ul>
+
+				<h2 class="mt-10 font-heading text-lg font-bold text-navy-900">
+					Livraison et retrait en Haute-Vienne
+				</h2>
+				<p class="mt-3 text-ink/70">
+					Nous proposons la mise à disposition d'échafaudages d'occasion dans tout le département
+					87 avec possibilité de retrait ou livraison sur chantier selon vos besoins. Nous
+					proposons notamment des solutions issues de la{' '}
+					<a href="/echafaudage-afix-occasion/" class="font-semibold text-navy-600 hover:text-gold-600">gamme échafaudage AFIX en Haute-Vienne</a>.
+				</p>
+
+				<div class="mt-6">
+					<Button href="/contact/" variant="secondary">Voir nos échafaudages disponibles</Button>
+				</div>
+			</div>
+
+			<div class="space-y-6">
+				<div class="rounded-lg border border-black/5 bg-paper p-6 sm:p-8">
+					<ShieldCheck class="h-8 w-8 text-gold-600" />
+					<h3 class="mt-3 font-heading text-base font-bold text-navy-900">Sécurité et bonnes pratiques</h3>
+					<p class="mt-2 text-sm text-ink/70">
+						Pour travailler en hauteur en toute sécurité, nous recommandons de suivre les bonnes
+						pratiques de prévention (montage, utilisation, vérifications).
+					</p>
+					<a href="https://www.inrs.fr" target="_blank" rel="noopener noreferrer" class="mt-3 inline-block text-sm font-semibold text-navy-600 hover:text-navy-800">
+						Ressource utile : INRS — prévention des risques professionnels
+					</a>
+				</div>
+
+				<div class="rounded-lg bg-navy-950 p-6 text-white sm:p-8">
+					<h3 class="font-heading text-base font-bold">Besoin d'un échafaudage d'occasion en Haute-Vienne ?</h3>
+					<p class="mt-2 text-sm text-white/75">
+						Contactez-nous pour obtenir des informations sur nos disponibilités ou pour recevoir
+						un devis personnalisé.
+					</p>
+					<div class="mt-4">
+						<Button href="/contact/" variant="primary">Nous contacter</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="reveal bg-paper py-16">
+		<div class="mx-auto max-w-4xl px-4 sm:px-6">
+			<h2 class="font-heading text-2xl font-bold text-navy-900">
+				Questions fréquentes sur l'échafaudage d'occasion en Haute-Vienne
+			</h2>
+			<div class="mt-8 space-y-6">
+				{faq.map(({ q, a }) => (
+					<div class="rounded-lg border border-black/5 bg-white p-6">
+						<h3 class="font-heading text-base font-bold text-navy-900">{q}</h3>
+						<p class="mt-2 text-sm text-ink/70">{a}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>

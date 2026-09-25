@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Sources brutes de la cliente (photos, archives, supports Batimat) — non publiées
+/images/
+/Salon Batimat/
+__MACOSX/
+*.zip
+
+# Captures de revue Playwright
+.playwright-mcp/

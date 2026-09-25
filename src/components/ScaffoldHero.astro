@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import chantierPhoto from '../assets/photos/hero-chantier-grange.jpg';
+---
+
+<section class="relative flex min-h-[85vh] items-end overflow-hidden bg-navy-950 text-white">
+	<Image
+		src={chantierPhoto}
+		alt="Échafaudage AFIX monté sur un chantier de rénovation en Haute-Vienne"
+		class="absolute inset-0 h-full w-full object-cover"
+		widths={[640, 1024, 1600, 2000]}
+		sizes="100vw"
+		loading="eager"
+		fetchpriority="high"
+	/>
+	<div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950/20"></div>
+	<div class="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-950/20 to-transparent"></div>
+
+	<div class="relative mx-auto w-full max-w-6xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
+		<h1 class="max-w-3xl font-heading text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+			Vente d'échafaudage neuf & d'occasion en Haute-Vienne (87)
+		</h1>
+		<p class="mt-6 max-w-lg text-lg text-white/80">
+			Livraison en Creuse, Corrèze, Dordogne et Charente.<br />
+			Solutions professionnelles adaptées à votre chantier.
+		</p>
+		<div class="mt-8 flex flex-wrap items-center gap-6">
+			<Button href="/contact/" variant="primary">Demander un devis</Button>
+			<a href="/nos-produits/" class="group flex items-center gap-2 font-heading text-sm font-semibold text-white hover:text-gold-400">
+				Voir nos produits
+				<span class="transition-transform group-hover:translate-x-1">→</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<div class="border-b border-black/5 bg-white">
+	<div class="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-black/10 px-4 sm:grid-cols-4 sm:px-6">
+		{[
+			{ value: '25 ans', label: "d'expérience" },
+			{ value: '3000 m²', label: 'de stock disponible' },
+			{ value: '6', label: 'départements desservis' },
+			{ value: '100%', label: 'matériel contrôlé' },
+		].map((stat) => (
+			<div class="px-4 py-6 text-center first:pl-0 last:pr-0 sm:px-6">
+				<p class="font-heading text-2xl font-extrabold text-navy-900 sm:text-3xl">{stat.value}</p>
+				<p class="mt-1 text-xs text-navy-700 sm:text-sm">{stat.label}</p>
+			</div>
+		))}
+	</div>
+</div>

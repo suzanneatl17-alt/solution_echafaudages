@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import { ShieldCheck, Award, MapPinned, Ruler } from '@lucide/astro';
+
+const values = [
+  {
+    icon: Ruler,
+    title: 'Solutions sur mesure',
+    text: 'Chaque projet est étudié selon les contraintes réelles du chantier — pas de solution standard imposée.',
+  },
+  {
+    icon: Award,
+    title: '25 ans d’expérience',
+    text: 'Éric Frugier met à profit un quart de siècle de pratique du métier avant de fonder Solution Échafaudages en 2022.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Matériel contrôlé',
+    text: 'Chaque échafaudage, neuf ou d’occasion, est vérifié avant livraison pour garantir sécurité et conformité sur chantier.',
+  },
+  {
+    icon: MapPinned,
+    title: 'Ancrage local',
+    text: 'Basée à Saint-Just-le-Martel, l’entreprise dessert la Haute-Vienne et les départements limitrophes avec un vrai service de proximité.',
+  },
+];
+---
+
+<Layout
+	title="À propos — Des solutions sur mesure | Solution Échafaudages"
+	description="Solution Échafaudages, fondée par Éric Frugier à Saint-Just-le-Martel (87), étudie chaque projet sur mesure, du bâtiment à l'événementiel, avec un accompagnement direct."
+>
+	<PageHero
+		eyebrow="À propos"
+		title="Des solutions sur mesure, pas des standards imposés"
+		subtitle="Solution Échafaudages accompagne les professionnels du BTP, de l'industrie et des collectivités de Haute-Vienne en échafaudages neufs et d'occasion."
+	/>
+
+	<section class="reveal mx-auto max-w-4xl px-4 py-16 sm:px-6">
+		<h2 class="font-heading text-2xl font-bold text-navy-900">Un accompagnement sur mesure, de A à Z</h2>
+		<p class="mt-4 text-ink/80 leading-relaxed">
+			Solution Échafaudages, basée à Saint-Just-le-Martel et fondée par Éric Frugier, est
+			spécialisée dans la vente d'échafaudages neufs et d'occasion pour tous types de chantiers,
+			du bâtiment à l'événementiel. Chaque projet est étudié sur mesure, en fonction des
+			contraintes du chantier, avec un accompagnement direct, de la prise de mesures à la
+			fourniture du matériel adapté.
+		</p>
+		<p class="mt-4 text-ink/80 leading-relaxed">
+			Fort de 25 ans d'expérience dans le montage et la location d'échafaudages, Éric Frugier
+			fonde Solution Échafaudages en 2022, au cœur de la Haute-Vienne. L'entreprise dispose d'un
+			stock important, avec plus de 3 000 m² de surface de stockage, permettant de répondre
+			rapidement aux besoins des chantiers en Haute-Vienne et dans les départements limitrophes
+			(Creuse, Corrèze, Dordogne, Charente, Indre).
+		</p>
+	</section>
+
+	<section class="reveal bg-paper py-16">
+		<div class="mx-auto max-w-6xl px-4 sm:px-6">
+			<h2 class="font-heading text-2xl font-bold text-navy-900">Ce qui nous distingue</h2>
+			<div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{values.map(({ icon: Icon, title, text }) => (
+					<div class="rounded-lg border border-black/5 bg-white p-6">
+						<Icon class="h-8 w-8 text-gold-600" />
+						<h3 class="mt-4 font-heading text-base font-bold text-navy-900">{title}</h3>
+						<p class="mt-2 text-sm text-ink/70">{text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="reveal mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">
+		<h2 class="font-heading text-2xl font-bold text-navy-900">Une question, un projet ?</h2>
+		<p class="mt-3 text-ink/70">Contactez directement Éric Frugier pour étudier votre besoin sur mesure.</p>
+		<div class="mt-6 flex flex-wrap justify-center gap-4">
+			<Button href="/contact/" variant="secondary">Demander un devis</Button>
+			<Button href="/ou-nous-trouver/" variant="outline-navy">
+				Voir notre zone d'intervention
+			</Button>
+		</div>
+	</section>
+</Layout>

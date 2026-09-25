@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { categories } from '../../../lib/categories';
+
+export async function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const allProducts = await getCollection('products');
+const products = allProducts
+  .filter((p) => p.data.category === category.slug)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+	title={`${category.title} — Solution Échafaudages`}
+	description={category.description}
+>
+	<PageHero eyebrow="Nos produits" title={category.title} subtitle={category.description} />
+
+	<section class="reveal mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{products.map((product) => (
+				<ProductCard
+					title={product.data.title}
+					image={product.data.image}
+					href={`/produit/${product.id}/`}
+					description={product.data.excerpt}
+				/>
+			))}
+		</div>
+	</section>
+</Layout>

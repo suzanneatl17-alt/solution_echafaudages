@@ -1,0 +1,38 @@
+---
+import { CalendarDays, MapPin, ArrowRight } from '@lucide/astro';
+import { isBatimatLive } from '../lib/batimat';
+---
+
+{isBatimatLive() && (
+	<section class="reveal border-y border-gold-500/30 bg-navy-950">
+		<div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-6 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left">
+			<div class="flex flex-col items-center gap-3 sm:flex-row sm:items-center">
+				<span class="rounded-full bg-gold-500 px-3 py-1 font-heading text-xs font-bold uppercase tracking-wide text-navy-950">
+					Salon
+				</span>
+				<div>
+					<p class="font-heading text-base font-bold text-white">
+						Notre partenaire AFIX au salon Batimat 2026
+					</p>
+					<p class="mt-1 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-white/70 sm:justify-start">
+						<span class="flex items-center gap-1.5">
+							<CalendarDays class="h-4 w-4 text-gold-500" />
+							28 sept. – 1er oct. 2026
+						</span>
+						<span class="flex items-center gap-1.5">
+							<MapPin class="h-4 w-4 text-gold-500" />
+							Paris Expo Porte de Versailles — Hall 5.1, Stand F046
+						</span>
+					</p>
+				</div>
+			</div>
+			<a
+				href="/salon-batimat-2026/"
+				class="group flex shrink-0 items-center gap-2 rounded-md bg-gold-500 px-5 py-2.5 font-heading text-sm font-semibold text-navy-950 transition-colors hover:bg-gold-600"
+			>
+				Toutes les infos
+				<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+			</a>
+		</div>
+	</section>
+)}

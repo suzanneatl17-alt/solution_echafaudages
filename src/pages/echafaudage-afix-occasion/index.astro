@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import { Dumbbell, ShieldCheck, Lightbulb, Handshake, CheckCircle2 } from '@lucide/astro';
+import afixLogo from '../../assets/photos/afix.png';
+import chantierAfix from '../../assets/photos/chantier-afix-chateau.jpg';
+
+const piliers = [
+  {
+    icon: Dumbbell,
+    title: 'Strong',
+    text: "Acier haute résistance conçu pour supporter les contraintes du chantier, avec des modèles premium en acier S355J0H (ex. FAST X52) pour les travaux les plus exigeants.",
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Safe',
+    text: 'Matériel fabriqué selon les normes européennes EN 12810 et EN 12811 relatives aux échafaudages de façade.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Smart',
+    text: 'Composants standardisés et rosace universelle à 8 connexions (360°) pour un montage modulaire rapide.',
+  },
+  {
+    icon: Handshake,
+    title: 'Service',
+    text: 'Conseil, étude technique, optimisation du budget et accompagnement de votre projet de bout en bout.',
+  },
+];
+
+const techniques = [
+  "Système multidirectionnel AFIX FAST en acier haute résistance",
+  "Rosace universelle à 8 connexions pour assembler montants, lisses et diagonales à 360°",
+  "Modèles premium en acier S355J0H (ex. FAST X52) pour les chantiers exigeants",
+  "Conformité aux normes EN 12810 et EN 12811",
+  "Modèles FAST X37 métriques certifiés NF (sous réserve du respect de la nomenclature)",
+];
+
+const services = [
+  'Conseil sur la configuration adaptée à votre chantier',
+  'Étude technique de la structure',
+  'Optimisation financière : neuf, occasion ou combinaison des deux',
+  'Accompagnement complet du projet, du devis à la livraison',
+];
+---
+
+<Layout
+	title="Échafaudage AFIX 87 | Haute-Vienne (Limoges) – Vente & Contact"
+	description="Vente d'échafaudage AFIX FAST neuf et d'occasion en Haute-Vienne (87) : système multidirectionnel en acier haute résistance, normes EN 12810/12811, conseil et devis près de Limoges."
+	image={afixLogo.src}
+>
+	<PageHero
+		eyebrow="Gamme AFIX"
+		title="Échafaudage AFIX en Haute-Vienne (87) – Vente d'échafaudage professionnel"
+		subtitle="Solution Échafaudages vous accompagne avec des solutions d'échafaudage professionnelles adaptées aux travaux en hauteur, et des conseils d'expert pour chaque chantier."
+	/>
+
+	<section class="reveal mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		<div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+			<div>
+				<h2 class="font-heading text-2xl font-bold text-navy-900">La gamme AFIX FAST</h2>
+				<p class="mt-4 text-ink/70">
+					La gamme AFIX FAST est un système d'échafaudage multidirectionnel en acier haute
+					résistance, pensé pour les professionnels du bâtiment : façade, rénovation, couverture,
+					industrie. Nous la proposons en neuf comme en{' '}
+					<a href="/echafaudage-doccasion-87/" class="font-semibold text-navy-600 hover:text-gold-600">occasion en Haute-Vienne</a>.
+				</p>
+				<Image
+					src={afixLogo}
+					alt="AFIX — Strong, Safe, Smart, Service"
+					widths={[400, 800]}
+					sizes="(min-width: 1024px) 50vw, 100vw"
+					class="mt-8 w-full max-w-md"
+				/>
+			</div>
+			<div class="overflow-hidden rounded-lg">
+				<Image
+					src={chantierAfix}
+					alt="Échafaudage AFIX monté sur un chantier de façade"
+					widths={[500, 900]}
+					sizes="(min-width: 1024px) 50vw, 100vw"
+					class="h-full w-full object-cover"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="reveal bg-paper py-16">
+		<div class="mx-auto max-w-6xl px-4 sm:px-6">
+			<h2 class="font-heading text-2xl font-bold text-navy-900">Les 4 piliers AFIX</h2>
+			<div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{piliers.map(({ icon: Icon, title, text }) => (
+					<div class="rounded-lg border border-black/5 bg-white p-6">
+						<Icon class="h-8 w-8 text-gold-600" />
+						<h3 class="mt-4 font-heading text-base font-bold uppercase tracking-wider text-navy-900">{title}</h3>
+						<p class="mt-2 text-sm text-ink/70">{text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="reveal mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		<div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+			<div>
+				<h2 class="font-heading text-lg font-bold text-navy-900">Caractéristiques techniques</h2>
+				<ul class="mt-4 space-y-3">
+					{techniques.map((item) => (
+						<li class="flex items-start gap-3 text-sm text-ink/80">
+							<CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-gold-600" />
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+
+				<h2 class="mt-10 font-heading text-lg font-bold text-navy-900">Nos services</h2>
+				<ul class="mt-4 space-y-3">
+					{services.map((item) => (
+						<li class="flex items-center gap-3 text-ink/80">
+							<span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600"></span>
+							{item}
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="rounded-lg bg-navy-950 p-6 text-white sm:p-8">
+				<h2 class="font-heading text-xl font-bold">Dites-nous votre besoin</h2>
+				<p class="mt-2 text-sm text-white/75">
+					Décrivez votre chantier : nous vous proposons la configuration AFIX adaptée et un devis
+					personnalisé.
+				</p>
+				<ul class="mt-4 space-y-1 text-sm text-white/85">
+					<li>06 09 55 14 94</li>
+					<li>solution.echafaudages@gmail.com</li>
+					<li>4 chemin de la petite Chèze, 87590 Saint-Just-le-Martel</li>
+				</ul>
+				<div class="mt-6 flex flex-wrap gap-3">
+					<Button href="/contact/" variant="primary">Nous contacter</Button>
+					<Button href="/tous-les-produits/" variant="ghost">Voir le catalogue</Button>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

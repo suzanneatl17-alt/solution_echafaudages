@@ -1,0 +1,29 @@
+---
+// Position du marqueur (siège, Saint-Just-le-Martel) en % de l'image, calculée
+// à partir du centre du département 87 sur le fond de carte recadré.
+const markerLeft = 43.4;
+const markerTop = 44.1;
+---
+
+<div class="relative mx-auto w-full max-w-md">
+	<img
+		src="/images/zone-map.svg"
+		alt="Carte de la zone d'intervention de Solution Échafaudages : Haute-Vienne, Charente, Creuse, Corrèze, Dordogne et Indre"
+		class="w-full"
+		width="600"
+		height="500"
+		loading="lazy"
+	/>
+	<span
+		class="absolute h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold-500 bg-navy-950"
+		style={`left:${markerLeft}%; top:${markerTop}%;`}
+		aria-hidden="true"
+	></span>
+	<span
+		class="absolute -translate-x-1/2 translate-y-1 rounded-full bg-navy-950 px-2 py-0.5 text-[11px] font-semibold text-white shadow"
+		style={`left:${markerLeft}%; top:${markerTop}%;`}
+	>
+		Notre siège
+	</span>
+</div>
+<p class="mt-3 text-center text-xs text-ink/70">Fond de carte : svg-maps / MapSVG (CC BY 4.0)</p>
